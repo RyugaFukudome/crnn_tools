@@ -29,7 +29,7 @@ def main():
         v_image.append(array)
         # print("v_image",v_image)
 
-    for i , value in enumerate(folder):
+    for i,value in enumerate(folder):
         v_label.append(i)
         CLASS_NUM += 1
         print("CLASS_NUM",CLASS_NUM)
