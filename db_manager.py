@@ -3,29 +3,37 @@ import mysql.connector
 import db_info
 
 # データベース接続
-def main():
+ #db接続
+def connect_db():
     con = mysql.connector.connect(
         host=db_info.db_user.host,
         db=db_info.db_user.db,
         user=db_info.db_user.username,
         passwd=db_info.db_user.userpass
     )
-
-    # 辞書型カーソル取得
+        # 辞書型カーソル取得
     cur = con.cursor(dictionary=True)
+    return cur,con
 
-    # 検索
-    sql='select * from result'
-    cur.execute(sql)
-    # すべての行を取得
-    rows = cur.fetchall()
-    for row in rows:
-        # 表示
-        print(row)
-
+def disconnect_db(cur,con):
     # 切断
     cur.close()
     con.close()
 
-if __name__ == '__main__':
-    main()
+
+def insert_result(test_label,judgment,answer,model_h5,model_json):
+    #挿入
+    cur,con = connect_db()
+    sql='insert into result(test_label,judgment,answer,model_h5,model_json) VALUES(%s,%s,%s,%s,%s)'
+    values = (test_label,judgment,answer,model_h5,model_json)
+    cur.execute(sql,values)
+    con.commit()
+    disconnect_db(cur,con)
+    print("good")
+    # すべての行を取得
+
+
+
+
+
+
