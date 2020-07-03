@@ -1,5 +1,0 @@
-クラス名　キャメル記法　UserAccountRegiser
-
-定数　英大文字 （例）CLASSNUM
-関数　スネーク記法　（例）def user_regiset
-変数　スネーク記法　（例）user_id
